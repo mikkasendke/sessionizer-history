@@ -7,8 +7,8 @@ return {
 
     MostRecentWorkspace = function()
         return function()
-            if not wezterm.GLOBAL.sessionizer then return end
-            if not wezterm.GLOBAL.sessionizer.history then return end
+            if not wezterm.GLOBAL.sessionizer then return {} end
+            if not wezterm.GLOBAL.sessionizer.history then return {} end
             return { { label = wezterm.GLOBAL.sessionizer.history.label, id = wezterm.GLOBAL.sessionizer.history.id } }
         end
     end,
