@@ -14,12 +14,14 @@ return {
     end,
     Wrapper = function(callback)
         return function(window, pane, id, label)
-            if not wezterm.GLOBAL.sessionizer then wezterm.GLOBAL.sessionizer = {} end
-            local previous_workspace = wezterm.mux.get_active_workspace()
-            wezterm.GLOBAL.sessionizer.history = {
-                label = "Recent (" .. previous_workspace .. ")",
-                id = previous_workspace,
-            }
+            if id and label then
+                if not wezterm.GLOBAL.sessionizer then wezterm.GLOBAL.sessionizer = {} end
+                local previous_workspace = wezterm.mux.get_active_workspace()
+                wezterm.GLOBAL.sessionizer.history = {
+                    label = "Recent (" .. previous_workspace .. ")",
+                    id = previous_workspace,
+                }
+            end
             callback(window, pane, id, label)
         end
     end,
