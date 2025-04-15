@@ -28,9 +28,10 @@ return {
     switch_to_most_recent_workspace = wezterm.action_callback(function(window, pane)
         if not wezterm.GLOBAL.sessionizer then wezterm.GLOBAL.sessionizer = {} end
         local previous_workspace = wezterm.mux.get_active_workspace()
-        window:perform_action(wezterm.action.SwitchToWorkspace(
-            wezterm.GLOBAL.sessionizer.history.id
-        ), pane)
+        window:perform_action(wezterm.action.SwitchToWorkspace({
+            name = wezterm.GLOBAL.sessionizer.history.id,
+            spawn = { cwd = wezterm.GLOBAL.sessionizer.history.id }
+        }), pane)
 
         wezterm.GLOBAL.sessionizer.history = {
             label = "Recent (" .. previous_workspace .. ")",
